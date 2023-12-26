@@ -16,22 +16,22 @@ const Home = () => {
         <div className="display flex justify-between items-center gap-2">
         <label className="w-full">
           <h1>Name:</h1>
-          <input type="text" placeholder="Name here:" required className="rounded-lg p-2 bg-slate-300 w-full"></input>
+          <input type="text" placeholder="Name here:" required className="rounded-lg p-2 bg-slate-300 w-full text-black"></input>
         </label>
         <label className="w-full">
           <h1>Symbol:</h1>
-          <input type="text" placeholder="Symbol here:"  className="rounded-lg p-2 bg-slate-300 w-full" required></input>
+          <input type="text" placeholder="Symbol here:"  className="rounded-lg p-2 bg-slate-300 w-full text-black" required></input>
         </label>
         </div>
         <div className="display flex justify-between item-center gap-2">
           <div className="w-full">
         <label>
           <h1>Decimals:</h1>
-          <input type="text" placeholder="Decimal here:" className="rounded-lg p-2 bg-slate-300 w-full "  required></input>
+          <input type="text" placeholder="Decimal here:" className="rounded-lg p-2 bg-slate-300 w-full  text-black"  required></input>
         </label>
         <label >
           <h1>Supply:</h1>
-          <input type="text" placeholder="Supply here:" className="rounded-lg p-2 bg-slate-300 w-full" required></input>
+          <input type="text" placeholder="Supply here:" className="rounded-lg p-2 bg-slate-300 w-full text-black" required></input>
         </label>
         </div>
         <label className="display grid w-full ">
@@ -40,19 +40,19 @@ const Home = () => {
           <input type="file"  required className="hidden w-full"></input>
         </label>
         </div>
-        <div className="display flex ">
+        <div className="display flex gap-2 ">
         <label>
           <h1>Revoke Mint Authority:</h1>
-          <input  type="text" placeholder="Type here:" className="rounded-lg p-2 bg-slate-300 w-full"></input>
+          <input  type="text" placeholder="Type here:" className="rounded-lg p-2 bg-slate-300 w-full text-black"></input>
         </label>
         <label>
           <h1>Revoke Freeze Authority:</h1>
-          <input type="text" placeholder="Type here:" className="rounded-lg p-2 bg-slate-300 w-full"></input>
+          <input type="text" placeholder="Type here:" className="rounded-lg p-2 bg-slate-300 w-full text-black"></input>
         </label>
         </div>
         <label>
           <h1>Description:</h1>
-          <textarea placeholder="Description here:" className="rounded-lg p-2 bg-slate-300 w-full h-[100px]"></textarea>
+          <textarea placeholder="Description here:" className="rounded-lg p-2 bg-slate-300 w-full h-[100px] text-black"></textarea>
         </label>
         <WalletButton />
       </form>

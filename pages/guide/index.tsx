@@ -115,8 +115,8 @@ const Guide = () => {
                         </div>
                     ))}
                     <div className="text-center relative bottom-[-30px] ">
-                        <Link href="" passHref>
-                            <a className="text-blue-500 underline">Read our Guide for more information</a>
+                        <Link href="" passHref className="text-blue-500 underline">
+                             Read our Guide for more information
                         </Link>
                     </div>
                 </div>

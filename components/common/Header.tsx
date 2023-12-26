@@ -34,12 +34,10 @@ const Header: FC = () => {
                 pathname: `/`,
                 query: router.query,
               }}
-            >
-              <a className="focus-style px-1 rounded">
+              className="focus-style px-1 rounded">
                 <p className="text-sm text-slate-200 hover:underline focus-visible:outline-none rounded-sm focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:border-none">
                   Token Creator
                 </p>
-              </a>
             </Link>
             <Link
               passHref
@@ -47,12 +45,10 @@ const Header: FC = () => {
                 pathname: `/market/create`,
                 query: router.query,
               }}
-            >
-              <a className="focus-style px-1 rounded">
+              className="focus-style px-1 rounded">
                 <p className="text-sm text-slate-200 hover:underline focus-visible:outline-none rounded-sm focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:border-none">
                   Market Creator
                 </p>
-              </a>
             </Link>
             <Link
               passHref
@@ -60,12 +56,10 @@ const Header: FC = () => {
                 pathname: `/guide`,
                 query: router.query,
               }}
-            >
-              <a className="focus-style px-1 rounded">
+              className="focus-style px-1 rounded" >
                 <p className="text-sm text-slate-200 hover:underline focus-visible:outline-none rounded-sm focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:border-none">
                   Guide
                 </p>
-              </a>
             </Link>
           <WalletButton />
           </div>
