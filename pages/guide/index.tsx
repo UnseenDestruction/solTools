@@ -3,11 +3,37 @@ import Link from "next/link";
 import { HeaderLayout } from "../../components/layouts/HeaderLayout";
 import Footer from "../../components/common/Footer";
 
+interface Provider {
+    Name: string;
+    Link: string;
+    Instructions: string;
+}
+
+interface StepData {
+    Image?: string;
+    Name?: string;
+    Symbol?: string;
+    Description?: string;
+    Supply?: string;
+    Decimals?: string;
+    RevokeMintAuthority?: string;
+    RevokeFreezeAuthority?: string;
+    Mints?: string;
+    BaseMint?: string;
+    QuoteMint?: string;
+    Tickers?: string;
+    Minordersize?: string;
+    PriceTick?: string;
+    LiquidityManager?: string;
+    Providers?: Provider[];
+}
+
 interface Section {
     section: string;
     content: string;
-    stepData?: any;
+    stepData?: StepData;
 }
+
 
 const Guide = () => {
     const [showAnswers, setShowAnswers] = useState<boolean[]>(Array(3).fill(false));
@@ -89,7 +115,7 @@ const Guide = () => {
                                             {key === 'Providers' ? (
                                                 <div>
                                                     <strong>{key}:</strong>
-                                                    {value.map((provider: any, providerIndex: number) => (
+                                                    {value.map((provider: Provider, providerIndex: number) => (
                                                         <div key={providerIndex}>
                                                             <p>
                                                                 <strong>Name:</strong> {provider.Name}
@@ -116,7 +142,7 @@ const Guide = () => {
                     ))}
                     <div className="text-center relative bottom-[-30px] ">
                         <Link href="" passHref className="text-blue-500 underline">
-                             Read our Guide for more information
+                            Read our Guide for more information
                         </Link>
                     </div>
                 </div>

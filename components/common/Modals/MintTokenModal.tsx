@@ -5,7 +5,7 @@ import {
   createMintToInstruction,
   getAssociatedTokenAddress,
   Mint,
-} from "@solana/spl-token";
+} from "@solana/spl-token-2";
 import { useConnection, useWallet } from "@solana/wallet-adapter-react";
 import { Transaction, TransactionInstruction } from "@solana/web3.js";
 import { Fragment, useMemo } from "react";

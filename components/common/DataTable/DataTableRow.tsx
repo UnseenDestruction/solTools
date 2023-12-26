@@ -1,4 +1,5 @@
 import { ArrowTopRightOnSquareIcon } from "@heroicons/react/24/outline";
+import Link from "next/link";
 export const DataTableRow = ({
   label,
   value,
@@ -16,9 +17,9 @@ export const DataTableRow = ({
       <td className="text-sm font-light p-4 md:px-8 whitespace-nowrap flex justify-end items-center space-x-2 text-slate-300">
         <p>{value}</p>
         {link ? (
-          <a href={link} target="_blank" rel="noopener noreferrer">
+          <Link href={link} target="_blank" rel="noopener noreferrer">
             <ArrowTopRightOnSquareIcon className="h-4 w-4 cursor-pointer text-cyan-400" />
-          </a>
+          </Link>
         ) : null}
       </td>
     </tr>

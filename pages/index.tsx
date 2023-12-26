@@ -2,8 +2,20 @@ import { HeaderLayout } from "../components/layouts/HeaderLayout";
 import Faq from "../components/common/Faq";
 import Footer from "../components/common/Footer";
 import WalletButton from "../components/common/WalletButton";
+import { useState } from "react";
+
 
 const Home = () => {
+
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
+
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const fileList = event.target.files;
+    if (fileList && fileList.length > 0) {
+      setSelectedFile(fileList[0]);
+    }
+  };
+  
 
 
   return (
@@ -34,11 +46,27 @@ const Home = () => {
           <input type="text" placeholder="Supply here:" className="rounded-lg p-2 bg-slate-300 w-full text-black" required></input>
         </label>
         </div>
-        <label className="display grid w-full ">
-          <h1>Image:</h1>
-          <span className="rounded-xl border-2 p-10  cursor-pointer w-full  text-center border-dashed">Upload Image</span>
-          <input type="file"  required className="hidden w-full"></input>
-        </label>
+        <label className="display grid w-full">
+      <h1>Image:</h1>
+      {selectedFile ? (
+        <img
+          src={URL.createObjectURL(selectedFile)}
+          alt="Uploaded file"
+          className="rounded-xl border-2 p-10 cursor-pointer w-full text-center border-dashed"
+        />
+      ) : (
+        <span className="rounded-xl border-2 p-10 cursor-pointer w-full text-center border-dashed">
+          Upload Image
+        </span>
+      )}
+      <input
+        type="file"
+        required
+        className="hidden w-full"
+        accept="image/jpeg, image/png, image/jpg"
+        onChange={handleFileChange}
+      />
+    </label>
         </div>
         <div className="display flex gap-2 ">
         <label>
