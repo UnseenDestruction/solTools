@@ -1,5 +1,5 @@
 import { BsDiscord } from "react-icons/bs";
-
+import { FaTwitter } from "react-icons/fa";
 
 const Footer = () => {
 
@@ -7,6 +7,7 @@ const Footer = () => {
         <div className="display flex justify-between items-center bg-black p-10 ">   
            <h1>Copyright @Pondini Development, 2023</h1>      
            <a href=""><BsDiscord /></a>
+           <a href=""><FaTwitter /></a>
         </div>
     )
 }
