@@ -3,6 +3,7 @@ import { ParsedUrlQuery } from "querystring";
 import { FC } from "react";
 import WalletButton from "./WalletButton";
 import Link from "next/link";
+import { FaDiscord } from "react-icons/fa6";
 
 const Header: FC = () => {
   const router = useRouter();
@@ -23,8 +24,8 @@ const Header: FC = () => {
               router.push({ pathname: "/", query: sanitizeQuery(router.query) })
             }
           >
-            <p className="">
-             LOGO
+            <p className="text-5xl animate-spin text-purple-500">
+            <FaDiscord />
             </p>
           </button>
           <div className="space-x-4 hidden md:flex items-center">
