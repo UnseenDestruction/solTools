@@ -24,6 +24,18 @@ import { ClipLoader } from "react-spinners";
 import { useNetworkConfiguration } from "../context/NetworkConfigurationProvider";
 import axios from "axios";
 
+
+
+
+const WalletNotConnectedMessage = () => (
+  <div className="bg-red-100 border w-[50%] border-red-400 text-red-700 px-4 py-3 rounded relative left-[25%]" role="alert" >
+    <strong className="font-bold">Wallet not connected!</strong>
+    <span className="block sm:inline"> Please connect your wallet to create a token.</span>
+  </div>
+);
+
+
+
 const CreateToken: FC = () => {
   const [imageFile, setImageFile] = useState(null);
   const [tokenDescription, setTokenDescription] = useState("");
@@ -31,7 +43,7 @@ const CreateToken: FC = () => {
   const [isRevokeToggled, setRevokeToggle] = useState(false);
     
   const { connection } = useConnection();
-  const { publicKey, sendTransaction } = useWallet();
+  const { publicKey, sendTransaction, connected } = useWallet();
   const { networkConfiguration } = useNetworkConfiguration();
 
   const [tokenName, setTokenName] = useState("");
@@ -40,7 +52,7 @@ const CreateToken: FC = () => {
   const [tokenDecimals, setTokenDecimals] = useState("9");
   const [tokenMintAddress, setTokenMintAddress] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-
+  
 const FreezeToggler = () => {
   setFreezeToggle(!isFreezeToggled);
 };
@@ -58,6 +70,12 @@ const RevokeToggler = () => {
 
   const createUploadToken = useCallback(async (e) => {
     e.preventDefault();
+
+    if(!connected) {
+      setIsLoading(false)
+      return;
+    }
+
 
     try {
       const tokenInfo = {
@@ -77,8 +95,8 @@ const RevokeToggler = () => {
       const formData = new FormData();
       formData.append("file", tokenFile);
 
-      const storageZoneName = "YOUR_STORAGE_ZONE_NAME";
-      const accessKey = "YOUR_BUNNY_STORAGE_API_KEY";
+      const storageZoneName = "null";
+      const accessKey = "null";
       const uploadUrl = `https://storage.bunnycdn.com/${storageZoneName}/${tokenFileName}`;
 
       const response = await axios.put(uploadUrl, formData, {
@@ -185,6 +203,7 @@ const RevokeToggler = () => {
           <ClipLoader />
         </div>
       )}
+      {!connected && <WalletNotConnectedMessage/>}
       {!tokenMintAddress ? (
         <form>
         <div className="bg-[rgba(13,25,39,255)] rounded-xl w-[50%] relative left-[25%] p-5 shadow-xl">
@@ -192,16 +211,19 @@ const RevokeToggler = () => {
             <div className="w-full">
               <label htmlFor="" className="grid gap-1">Token Name:
               <input
-                className="rounded border w-full py-1 text-xl font-normal text-gray-700 focus:border-blue-600 focus:outline-none"
+                className="rounded border w-full py-1 text-xl font-normal text-gray-700 focus:border-blue-600 focus:outline-none p-2"
                 onChange={(e) => setTokenName(e.target.value)}
+                placeholder="Type Your Token Name Here"
               />
               </label>
           </div>
           <div className="w-full">
             <label htmlFor="" className="grid gap-1 ">Token Symbol:
               <input
-                className="rounded border py-1 w-full text-xl font-normal text-gray-700 focus:border-blue-600 focus:outline-none"
-              />
+                className="rounded border py-1 w-full text-xl font-normal text-gray-700 focus:border-blue-600 focus:outline-none p-2"
+                placeholder="3-4 Letter like SOL"
+                onChange={() => setTokenSymbol(e => e)}
+             />
               </label>
           </div>
           </div>
@@ -213,6 +235,7 @@ const RevokeToggler = () => {
                 className="rounded border px-4 py-2 text-xl font-normal  text-gray-700 focus:border-blue-600 focus:outline-none"
                 min={0}
                 type="number"
+                placeholder="Set Your Token Supply Here"
               />
             </label>
           </div>
@@ -230,7 +253,7 @@ const RevokeToggler = () => {
           </div>
           <div className="mt-4 grid sm:gap-4 w-full">
             <div className="m-auto p-2">
-              <div className="text-xl font-normal">Token icon</div>
+              <div className="text-xl font-normal">Token Icon</div>
               <p>Image file of your 
                 future token.</p>
             </div>
@@ -310,18 +333,21 @@ const RevokeToggler = () => {
               <textarea
                 className="rounded border px-4 py-2 text-xl font-normal text-gray-700 focus:border-blue-600 focus:outline-none"
                 onChange={(e) => setTokenDescription(e.target.value)}
+                placeholder="Type Your Description Here:"
               />
               </label>
           </div>
           
           <div className="mt-4">
             <button
-              className="... btn m-2 animate-pulse bg-purple-500 rounded-xl p-4 hover:-translate-y-2 duration-300"
+              className={`... btn m-2 animate-pulse bg-purple-500 rounded-xl p-4 hover:-translate-y-2 duration-300 cursor-pointer ${!connected ? '' : 'null'}`}
               onClick={createUploadToken}
+              disabled={!connected}
             >
               Create token
             </button>
           </div>
+          <p onChange={() => setTokenUri(e => e)}>{tokenUri}</p>
         </div>
         </form>
       ) : (
