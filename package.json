@@ -11,6 +11,7 @@
   "dependencies": {
     "@headlessui/react": "^1.7.17",
     "@heroicons/react": "^2.1.1",
+    "@metaplex-foundation/js": "^0.19.3",
     "@metaplex-foundation/mpl-token-metadata": "^2.5.2",
     "@metaplex/js": "^4.12.0",
     "@project-serum/serum": "^0.13.65",
@@ -24,9 +25,7 @@
     "axios": "^1.6.3",
     "immer": "^9.0.12",
     "install": "^0.13.0",
-    "mime": "^4.0.1",
     "next": "^14.0.4",
-    "nft.storage": "^7.1.1",
     "npm": "^10.2.5",
     "postcss": "^8.4.32",
     "react": "18.2.0",

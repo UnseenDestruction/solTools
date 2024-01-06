@@ -50,7 +50,7 @@ export const CLUSTERS: SolanaCluster[] = [
     label: "Mainnet Beta",
     network: "mainnet-beta",
     endpoint:
-      process.env.NEXT_PUBLIC_MAINNET_URL || clusterApiUrl("mainnet-beta"),
+      "https://mainnet.helius-rpc.com/?api-key=fc70cd4a-717e-4e87-8d2c-23586251c86b" || clusterApiUrl("mainnet-beta"),
   },
   {
     label: "Testnet",
