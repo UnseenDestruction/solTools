@@ -24,7 +24,7 @@ const Header: FC = () => {
               router.push({ pathname: "/", query: sanitizeQuery(router.query) })
             }
           >
-            <p className="text-5xl animate-spin text-purple-500">
+            <p className="text-5xl  text-purple-500">
             <FaDiscord />
             </p>
           </button>

@@ -23,7 +23,7 @@ import { notify } from "../utils/notifications";
 import { ClipLoader } from "react-spinners";
 import { useNetworkConfiguration } from "../context/NetworkConfigurationProvider";
 import axios from "axios";
-
+import { useWalletModal } from "@solana/wallet-adapter-react-ui";
 
 
 
@@ -41,7 +41,7 @@ const CreateToken: FC = () => {
   const [tokenDescription, setTokenDescription] = useState("");
   const [isFreezeToggled, setFreezeToggle] = useState(false);
   const [isRevokeToggled, setRevokeToggle] = useState(false);
-    
+  const { visible, setVisible } = useWalletModal()  
   const { connection } = useConnection();
   const { publicKey, sendTransaction, connected } = useWallet();
   const { networkConfiguration } = useNetworkConfiguration();
@@ -70,6 +70,14 @@ const RevokeToggler = () => {
 
   const createUploadToken = useCallback(async (e) => {
     e.preventDefault();
+
+    if (!connected) {
+      notify({
+        type: "error",
+        message: "Please connect your wallet to create a token.",
+      });
+      return;
+    }
 
     if(!connected) {
       setIsLoading(false)
